@@ -1,7 +1,7 @@
 Hylang - gradient descent
 =========================
 *Hylang - gradient descent* is a basic neural network (gradient descent) as presented by Siraj Raval in `this YouTube video <https://www.youtube.com/watch?v=h3l4qz76JhQ>`__.
-It's implemented in `Hy <http://docs.hylang.org/>`__ a Lisp dialect for the Python ecosystem.
+It's implemented in `Hy <http://docs.hylang.org/>`__, a Lisp dialect for the Python ecosystem.
 
 Setup
 -----
