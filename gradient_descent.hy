@@ -1,34 +1,15 @@
 (import numpy)
 (require [hy.contrib.loop [loop]])
 
+;; our sigmoid function
 (defn nonlin [x &optional (derive False)] (
         if derive
         (return (* x (- 1 x)))
         (return (/ 1 (+ 1 (.exp numpy (- x)))))))
 
-(setv input-data
-  (.array numpy ;; note: 3rd column contains bias term
-    [[0 0 1]
-     [0 1 1]
-     [1 0 1]
-     [1 1 1]]))
-
-(setv output-data
-  (.array numpy
-    [[0]
-     [1]
-     [1]
-     [0]]))
-
-(.random.seed numpy 1)
-
-(setv synapses {
-                 0 (- (* 2 (.random.random numpy [3 4])) 1)
-                 1 (- (* 2 (.random.random numpy [4 1])) 1)})
-
 
 ;; training
-(defn train [synapses index]
+(defn train [synapses input-data index]
   (loop [[i index] [acc 1]]
     (global layer-2)
       (if (zero? i)
@@ -49,4 +30,27 @@
           (assoc synapses 0 (+ (get synapses 0) (.T.dot layer-0 layer-1-delta)))
           (assoc synapses 1 (+ (get synapses 1) (.T.dot layer-1 layer-2-delta)))]))))
 
-(print (+ "Output after training \n\r" (str (train synapses 60000))))
+
+;; define input data & synapses
+(setv input-data
+  (.array numpy ;; note: 3rd column contains bias term
+    [[0 0 1]
+     [0 1 1]
+     [1 0 1]
+     [1 1 1]]))
+
+(setv output-data
+  (.array numpy
+    [[0]
+     [1]
+     [1]
+     [0]]))
+
+(.random.seed numpy 1)
+
+(setv synapses {
+                 0 (- (* 2 (.random.random numpy [3 4])) 1)
+                 1 (- (* 2 (.random.random numpy [4 1])) 1)})
+
+;; run traning function
+(print (+ "Output after training \n\r" (str (train synapses input-data 60000))))
