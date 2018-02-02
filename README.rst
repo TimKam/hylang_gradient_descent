@@ -15,3 +15,5 @@ Start the program by executing ``run.py``:
     Python run.py
 
 Play around with the parameters and program logic by adjusting them directly in the main source file, `gradient_descent.hy <./gradient_descent.hy>`__.
+
+Read more about this project on the `Signavio Tech Blog <https://tech.signavio.com/2017/hy>`_.
